@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>5 Day Weather</title>
+</head>
+<body>
+    <header>
+        <div class="headerBox">
+            <h1 class="headerTitle">Weather Dashboard</h1>
+        </div>
+    </header>
+    <main class="mainInfo">
+        <div class="searchContainer">
+            <form class="form" action="">
+                <label for="searchInput">Search For A City:</label>
+                <input id="searchInput" class="searchInput" type="text" placeholder="Los Angeles">
+                <button class="searchBtn">Search</button>
+            </form>
+        </div>
+        <div class="returnedData">
+            <div class="currentDay">
+                <img alt="weatherIconMain">
+                <h4 class="locationMain"></h4>
+                <p class="tempMain"></p>
+                <p class="windMain"></p>
+                <p class="humidityMain"></p>
+            </div>
+            <div class="5dayBlocks">
+                <div class="weatherBox">
+                    <h6 class="day1"></h6>
+                    <img alt="weatherIcon1">
+                    <p class="temp1"></p>
+                    <p class="wind1"></p>
+                    <p class="humidity1"></p>
+                </div>
+                <div class="weatherBox">
+                    <h6 class="day2"></h6>
+                    <img alt="weatherIcon2">
+                    <p class="temp2"></p>
+                    <p class="wind2"></p>
+                    <p class="humidity2"></p>
+                </div>
+                <div class="weatherBox">
+                    <h6 class="day3"></h6>
+                    <img alt="weatherIcon3">
+                    <p class="temp3"></p>
+                    <p class="wind3"></p>
+                    <p class="humidity3"></p>
+                </div>
+                <div class="weatherBox">
+                    <h6 class="day4"></h6>
+                    <img alt="weatherIcon4">
+                    <p class="temp4"></p>
+                    <p class="wind4"></p>
+                    <p class="humidity4"></p>
+                </div>
+                <div class="weatherBox">
+                    <h6 class="day5"></h6>
+                    <img alt="weatherIcon5">
+                    <p class="temp5"></p>
+                    <p class="wind5"></p>
+                    <p class="humidity5"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
+    
+</body>
+</html>
