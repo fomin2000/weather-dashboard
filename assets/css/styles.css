@@ -46,6 +46,50 @@
     border-color: rgb(2, 201, 201);
 }
 
-.returnedData {
+.mainInfo {
+    display: flex;
+    flex-direction: row;
     
+    height: 100vh;
+}
+
+.returnedData {
+    width: 75%;
+    margin-left: 20px;
+    display: none;
+}
+
+.todayTitle {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+
+.currentDay {
+    border: 5px solid black;
+    text-align: center;
+    padding: 25px;
+    border-radius: 10px;
+    border-style: double;
+}
+
+.dayBlocks {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.forecastTitle {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.weatherBox {
+    width: 200px;
+    height: 250px;
+    background-color: rgb(53, 53, 87);
+    border-radius: 10px;
 }
