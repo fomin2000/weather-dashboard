@@ -37,19 +37,20 @@ var currentDate = moment().format('MMMM Do YYYY')
 var searchHistory = []
 
 
-renderSearches()
-
-
 
 
 // functions
+
+renderSearches()
+
+// current weather api
 function getCurrentWeather(city) {
-
+    
     fullBox.style.display = 'block'
-
-
+    
+    
     var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
-
+    
     fetch(requestUrl)
         .then(function(response){
             return response.json()
@@ -92,7 +93,7 @@ function getCurrentWeather(city) {
 
 
 
-
+// forecast weather api
 
 function getForecast(city) {
     
