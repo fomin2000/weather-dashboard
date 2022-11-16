@@ -96,3 +96,8 @@
     color: white;
     padding-left: 40px;
 }
+
+#additionalButtons {
+    display: flex;
+    flex-direction: column;
+}

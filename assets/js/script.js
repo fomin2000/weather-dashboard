@@ -2,6 +2,10 @@
 var apiKey = '9cfe7036b90b3a13af1a88f6bf534b32'
 
 var searchBtn = document.getElementById('searchBtn1')
+var form = document.querySelector('.form')
+var newButtonsBox = document.getElementById('additionalButtons')
+
+var input = document.getElementById('searchInput').value
 
 // main info box
 var fullBox = document.querySelector('.returnedData')
@@ -27,29 +31,24 @@ var newP3 = document.createElement('p')
 
 
 var currentDate = moment().format('MMMM Do YYYY')
-var day1 = moment().add(1, 'days').format('L')
-var day2 = moment().add(2, 'days').format('L')
-var day3 = moment().add(3, 'days').format('L')
-var day4 = moment().add(4, 'days').format('L')
-var day5 = moment().add(5, 'days').format('L')
 
 // search history
 
+var searchHistory = []
 
+
+renderSearches()
 
 
 
 
 // functions
-function getCurrentWeather(e) {
-    e.preventDefault()
-
+function getCurrentWeather(city) {
 
     fullBox.style.display = 'block'
 
-    var inputValue = document.getElementById('searchInput').value
 
-    var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}`
+    var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
 
     fetch(requestUrl)
         .then(function(response){
@@ -95,13 +94,10 @@ function getCurrentWeather(e) {
 
 
 
-function getForecast(e) {
-    e.preventDefault()
-
-    var inputValue = document.getElementById('searchInput').value
+function getForecast(city) {
     
 
-    var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${apiKey}`
+    var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
 
     fetch(requestUrl)
         .then(function(response){
@@ -110,6 +106,7 @@ function getForecast(e) {
         .then(function(data){
             console.log(data)
 
+            blocksContainer.innerHTML = ''
             // box 1 append
             for (var i = 0; i < data.list.length; i += 8) {
                 var dt = data.list[i].dt_txt
@@ -153,31 +150,72 @@ function getForecast(e) {
                 
                 blocksContainer.appendChild(newDiv)
 
-                searchBtn.disabled = true
             }     
         })
-
-    var button = document.createElement('button')
-
-    button.classList.add('searchBtn')
-    button.textContent = 'New Search'
     
-    fullBox.appendChild(button)
 
-    button.addEventListener('click', function(e) {
-        e.preventDefault
-        window.location.reload();
+}
 
-    })
+
+function saveSearch(input) {
+    searchHistory.push(input)
+
+    localStorage.setItem('history', JSON.stringify(searchHistory))
+
+    renderSearches()
+
+}
+
+function renderSearches() {
+    var newData = JSON.parse(localStorage.getItem('history')) || []
+
+    newButtonsBox.innerHTML = ''
     
+    for ( var i = 0; i < newData.length; i++) {
+
+        var returned = newData[i]
+        var newButton = document.createElement('button')
+        newButton.classList.add('searchBtn')
+        newButton.innerHTML = returned
+        newButtonsBox.appendChild(newButton)
+
+    }
+}
+
+
+function searchEvent(e) {
+    e.preventDefault()
+    var city = document.getElementById('searchInput').value
+    getCurrentWeather(city)
+    getForecast(city)
+    saveSearch(city)
 
 }
 
 
 
 
-
-
 // event listeners
-searchBtn.addEventListener('click', getCurrentWeather)
-searchBtn.addEventListener('click', getForecast)
+
+
+
+
+
+searchBtn.addEventListener('click', searchEvent)
+
+
+newButtonsBox.addEventListener('click', function(e){
+    e.preventDefault()
+
+
+    if (e.target.tagName !== 'BUTTON') {
+        return
+    } else {
+        var search = e.target.textContent
+
+        getCurrentWeather(search)
+        getForecast(search)
+    }
+    
+})
+
