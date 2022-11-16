@@ -80,6 +80,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 50px;
+    flex-wrap: wrap;
 }
 
 .forecastTitle {
